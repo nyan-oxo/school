@@ -1,0 +1,2777 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>School</title>
+
+<style>
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    "Noto Sans JP",
+    sans-serif;
+
+  background: #f5f7fb;
+  color: #333;
+}
+
+
+/* =========================
+   ヘッダー
+========================= */
+
+header {
+  background: white;
+  padding: 22px 20px;
+
+  border-bottom: 1px solid #eee;
+
+  position: sticky;
+  top: 0;
+
+  z-index: 20;
+}
+
+.logo {
+  font-size: 27px;
+  font-weight: 800;
+
+  margin: 0;
+}
+
+.subtitle {
+  margin: 5px 0 0;
+
+  color: #888;
+
+  font-size: 13px;
+}
+
+
+/* =========================
+   メイン
+========================= */
+
+main {
+  max-width: 800px;
+
+  margin: auto;
+
+  padding: 20px;
+}
+
+
+/* =========================
+   セクションタイトル
+========================= */
+
+.section-title {
+  font-size: 15px;
+
+  font-weight: bold;
+
+  margin-bottom: 10px;
+}
+
+
+/* =========================
+   全校・学年
+========================= */
+
+.tabs {
+  display: flex;
+
+  gap: 8px;
+
+  overflow-x: auto;
+
+  padding-bottom: 5px;
+
+  margin-bottom: 20px;
+}
+
+.tabs button {
+  flex-shrink: 0;
+
+  border: none;
+
+  background: white;
+
+  padding: 10px 18px;
+
+  border-radius: 12px;
+
+  cursor: pointer;
+
+  font-size: 14px;
+
+  color: #666;
+}
+
+.tabs button.active {
+  background: #333;
+
+  color: white;
+
+  font-weight: bold;
+}
+
+
+/* =========================
+   クラス
+========================= */
+
+.class-area {
+  display: block;
+}
+
+.class-tabs {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, 1fr);
+
+  gap: 8px;
+
+  margin-bottom: 25px;
+}
+
+.class-tabs button {
+  border: none;
+
+  background: white;
+
+  padding: 13px;
+
+  border-radius: 12px;
+
+  cursor: pointer;
+
+  font-size: 14px;
+}
+
+.class-tabs button.active {
+  background: #333;
+
+  color: white;
+
+  font-weight: bold;
+}
+
+
+/* =========================
+   現在地
+========================= */
+
+.current {
+  background: white;
+
+  border-radius: 15px;
+
+  padding: 15px 17px;
+
+  margin-bottom: 18px;
+
+  font-size: 14px;
+
+  box-shadow:
+    0 2px 8px rgba(0,0,0,0.04);
+}
+
+.current strong {
+  font-size: 16px;
+}
+
+
+/* =========================
+   教科
+========================= */
+
+.subject-area {
+  display: block;
+}
+
+.subject-tabs {
+  display: flex;
+
+  gap: 8px;
+
+  overflow-x: auto;
+
+  padding-bottom: 8px;
+
+  margin-bottom: 20px;
+}
+
+.subject-tabs button {
+  flex-shrink: 0;
+
+  border: none;
+
+  background: white;
+
+  padding: 11px 15px;
+
+  border-radius: 12px;
+
+  cursor: pointer;
+
+  font-size: 13px;
+
+  color: #555;
+}
+
+.subject-tabs button.active {
+  background: #333;
+
+  color: white;
+
+  font-weight: bold;
+}
+
+
+/* =========================
+   検索
+========================= */
+
+.search {
+  width: 100%;
+
+  border: none;
+
+  background: white;
+
+  padding: 14px 16px;
+
+  border-radius: 13px;
+
+  font-size: 14px;
+
+  margin-bottom: 12px;
+
+  outline: none;
+
+  box-shadow:
+    0 2px 8px rgba(0,0,0,0.04);
+}
+
+
+/* =========================
+   フィルター
+========================= */
+
+.filter-area {
+  display: grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  gap: 8px;
+
+  margin-bottom: 15px;
+}
+
+.filter-box {
+  background: white;
+
+  border-radius: 12px;
+
+  padding: 10px;
+}
+
+.filter-box label {
+  display: block;
+
+  font-size: 11px;
+
+  color: #888;
+
+  margin-bottom: 5px;
+}
+
+.filter-box input,
+.filter-box select {
+  width: 100%;
+
+  border: none;
+
+  outline: none;
+
+  background: transparent;
+
+  font-size: 13px;
+}
+
+
+/* =========================
+   追加ボタン
+========================= */
+
+.add-button {
+  width: 100%;
+
+  padding: 15px;
+
+  border: none;
+
+  border-radius: 14px;
+
+  background: #333;
+
+  color: white;
+
+  font-size: 15px;
+
+  font-weight: bold;
+
+  cursor: pointer;
+
+  margin-bottom: 18px;
+}
+
+
+/* =========================
+   フォーム
+========================= */
+
+.form {
+  display: none;
+
+  background: white;
+
+  border-radius: 16px;
+
+  padding: 20px;
+
+  margin-bottom: 20px;
+
+  box-shadow:
+    0 3px 12px rgba(0,0,0,0.05);
+}
+
+.form h2 {
+  font-size: 18px;
+
+  margin-top: 0;
+}
+
+.form label {
+  display: block;
+
+  font-size: 13px;
+
+  color: #666;
+
+  margin-top: 12px;
+
+  margin-bottom: 5px;
+}
+
+.form input,
+.form textarea,
+.form select {
+  width: 100%;
+
+  border: 1px solid #ddd;
+
+  border-radius: 9px;
+
+  padding: 12px;
+
+  font-size: 14px;
+
+  font-family: inherit;
+}
+
+.form textarea {
+  min-height: 120px;
+
+  resize: vertical;
+}
+
+
+/* =========================
+   ファイル
+========================= */
+
+.file-box {
+  border: 2px dashed #ddd;
+
+  border-radius: 14px;
+
+  padding: 18px;
+
+  text-align: center;
+
+  margin-top: 7px;
+
+  background: #fafafa;
+}
+
+.file-box p {
+  margin: 0 0 10px;
+
+  font-size: 13px;
+
+  color: #888;
+}
+
+.file-box input {
+  border: none;
+
+  padding: 0;
+
+  background: transparent;
+}
+
+
+/* =========================
+   選択ファイル
+========================= */
+
+.selected-files {
+  margin-top: 10px;
+}
+
+.selected-file {
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  background: #f2f3f5;
+
+  padding: 9px 11px;
+
+  border-radius: 9px;
+
+  margin-top: 7px;
+
+  font-size: 13px;
+
+  word-break: break-all;
+}
+
+
+/* =========================
+   保存
+========================= */
+
+.form-save {
+  width: 100%;
+
+  border: none;
+
+  border-radius: 10px;
+
+  background: #333;
+
+  color: white;
+
+  padding: 13px;
+
+  margin-top: 18px;
+
+  cursor: pointer;
+
+  font-size: 15px;
+}
+
+
+/* =========================
+   カード
+========================= */
+
+.card {
+  background: white;
+
+  border-radius: 16px;
+
+  padding: 18px;
+
+  margin-bottom: 14px;
+
+  box-shadow:
+    0 3px 12px rgba(0,0,0,0.05);
+
+  position: relative;
+}
+
+
+/* ピン留めカード */
+
+.card.pinned {
+  border: 2px solid #e5c85c;
+}
+
+
+/* =========================
+   カード上部
+========================= */
+
+.card-top {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  gap: 10px;
+
+  flex-wrap: wrap;
+}
+
+.tag {
+  display: inline-block;
+
+  padding: 5px 9px;
+
+  border-radius: 8px;
+
+  font-size: 11px;
+
+  background: #eee;
+}
+
+.important {
+  background: #ffe7e7;
+
+  color: #d33;
+}
+
+.assignment {
+  background: #fff1d8;
+
+  color: #b56b00;
+}
+
+.notice {
+  background: #e8f0ff;
+
+  color: #4169c1;
+}
+
+.school-wide {
+  background: #eee8ff;
+
+  color: #6544a5;
+}
+
+
+/* =========================
+   未読
+========================= */
+
+.unread-tag {
+  background: #e6f0ff;
+
+  color: #3971c9;
+
+  font-weight: bold;
+}
+
+
+/* =========================
+   タイトル
+========================= */
+
+.card h3 {
+  margin: 12px 0 8px;
+
+  font-size: 17px;
+}
+
+.card-content {
+  white-space: pre-wrap;
+
+  line-height: 1.7;
+
+  font-size: 14px;
+
+  color: #555;
+}
+
+
+/* =========================
+   添付
+========================= */
+
+.attachments {
+  margin-top: 15px;
+}
+
+.attachments-title {
+  font-size: 12px;
+
+  color: #888;
+
+  margin-bottom: 7px;
+}
+
+.attachment {
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  background: #f5f6f8;
+
+  border-radius: 10px;
+
+  padding: 10px;
+
+  margin-top: 7px;
+}
+
+.attachment-icon {
+  font-size: 22px;
+}
+
+.attachment-name {
+  flex: 1;
+
+  font-size: 13px;
+
+  word-break: break-all;
+}
+
+
+/* =========================
+   日付
+========================= */
+
+.date {
+  margin-top: 13px;
+
+  font-size: 12px;
+
+  color: #999;
+}
+
+
+/* =========================
+   ボタン
+========================= */
+
+.card-buttons {
+  display: flex;
+
+  gap: 8px;
+
+  margin-top: 15px;
+
+  flex-wrap: wrap;
+}
+
+.card-buttons button {
+  border: none;
+
+  padding: 9px 12px;
+
+  border-radius: 9px;
+
+  cursor: pointer;
+
+  font-size: 12px;
+
+  background: #f0f1f3;
+}
+
+.card-buttons .checked {
+  background: #e4f4e8;
+
+  color: #39824a;
+}
+
+.card-buttons .pinned-button {
+  background: #fff6d7;
+
+  color: #8b6d00;
+}
+
+
+/* =========================
+   空っぽ
+========================= */
+
+.empty {
+  text-align: center;
+
+  color: #999;
+
+  padding: 45px 10px;
+
+  font-size: 14px;
+
+  line-height: 1.8;
+}
+
+
+/* =========================
+   件数
+========================= */
+
+.result-count {
+  font-size: 12px;
+
+  color: #999;
+
+  margin: 5px 2px 12px;
+}
+
+
+/* =========================
+   スマホ
+========================= */
+
+@media (max-width: 500px) {
+
+  main {
+    padding: 15px;
+  }
+
+  .class-tabs {
+    grid-template-columns:
+      repeat(3, 1fr);
+  }
+
+  .filter-area {
+    grid-template-columns:
+      1fr;
+  }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+  <h1 class="logo">
+    🏫 School
+  </h1>
+
+  <p class="subtitle">
+    学校の連絡を、見やすくひとつに。
+  </p>
+
+</header>
+
+
+<main>
+
+
+<!-- =====================
+     全校・学年
+===================== -->
+
+<div class="section-title">
+  範囲
+</div>
+
+<div
+  class="tabs"
+  id="gradeTabs">
+</div>
+
+
+<!-- =====================
+     クラス
+===================== -->
+
+<div
+  class="class-area"
+  id="classArea">
+
+  <div class="section-title">
+    クラス
+  </div>
+
+  <div
+    class="class-tabs"
+    id="classTabs">
+  </div>
+
+</div>
+
+
+<!-- =====================
+     現在地
+===================== -->
+
+<div
+  class="current"
+  id="current">
+</div>
+
+
+<!-- =====================
+     教科
+===================== -->
+
+<div
+  class="subject-area"
+  id="subjectArea">
+
+  <div class="section-title">
+    教科
+  </div>
+
+  <div
+    class="subject-tabs"
+    id="subjectTabs">
+  </div>
+
+</div>
+
+
+<!-- =====================
+     検索
+===================== -->
+
+<input
+
+  class="search"
+
+  id="search"
+
+  placeholder="🔍 連絡を検索..."
+
+  oninput="renderNotices()"
+
+>
+
+
+<!-- =====================
+     日付・並び替え
+===================== -->
+
+<div class="filter-area">
+
+
+  <div class="filter-box">
+
+    <label>
+      📅 投稿日で絞り込み
+    </label>
+
+    <input
+
+      type="date"
+
+      id="dateFilter"
+
+      onchange="renderNotices()"
+
+    >
+
+  </div>
+
+
+  <div class="filter-box">
+
+    <label>
+      ↕️ 並び替え
+    </label>
+
+    <select
+      id="sortSelect"
+      onchange="renderNotices()"
+    >
+
+      <option value="new">
+        新しい順
+      </option>
+
+      <option value="old">
+        古い順
+      </option>
+
+      <option value="unread">
+        未読を上
+      </option>
+
+    </select>
+
+  </div>
+
+</div>
+
+
+<!-- =====================
+     フィルター解除
+===================== -->
+
+<button
+
+  onclick="clearDateFilter()"
+
+  style="
+    width:100%;
+    border:none;
+    background:#fff;
+    padding:10px;
+    border-radius:10px;
+    margin-bottom:15px;
+    cursor:pointer;
+    color:#666;
+  "
+
+>
+
+  ✕ 日付フィルターを解除
+
+</button>
+
+
+<!-- =====================
+     追加
+===================== -->
+
+<button
+
+  class="add-button"
+
+  onclick="toggleForm()"
+
+>
+
+  ＋ 新しい連絡を追加
+
+</button>
+
+
+<!-- =====================
+     フォーム
+===================== -->
+
+<div
+  class="form"
+  id="form"
+>
+
+  <h2>
+    📢 新しい連絡
+  </h2>
+
+
+  <label>
+    タイトル
+  </label>
+
+  <input
+
+    id="title"
+
+    placeholder="例：体育祭について"
+
+  >
+
+
+  <label>
+    内容
+  </label>
+
+  <textarea
+
+    id="content"
+
+    placeholder="連絡内容を書いてね"
+
+  ></textarea>
+
+
+  <label>
+    種類
+  </label>
+
+  <select id="type">
+
+    <option value="notice">
+      🔵 お知らせ
+    </option>
+
+    <option value="assignment">
+      🟡 提出物
+    </option>
+
+    <option value="important">
+      🔴 重要
+    </option>
+
+  </select>
+
+
+  <label>
+    期限
+  </label>
+
+  <input
+
+    id="deadline"
+
+    type="date"
+
+  >
+
+
+  <label>
+    📎 写真・ファイル
+  </label>
+
+  <div class="file-box">
+
+    <p>
+      写真やPDFなどを選択できます
+    </p>
+
+    <input
+
+      id="fileInput"
+
+      type="file"
+
+      multiple
+
+      accept="
+        image/*,
+        .pdf,
+        .doc,
+        .docx,
+        .xls,
+        .xlsx,
+        .ppt,
+        .pptx,
+        .txt
+      "
+
+      onchange="showSelectedFiles()"
+
+    >
+
+  </div>
+
+
+  <div
+    class="selected-files"
+    id="selectedFiles">
+  </div>
+
+
+  <button
+
+    class="form-save"
+
+    onclick="addNotice()"
+
+  >
+
+    保存する
+
+  </button>
+
+</div>
+
+
+<!-- =====================
+     件数
+===================== -->
+
+<div
+  class="result-count"
+  id="resultCount">
+</div>
+
+
+<!-- =====================
+     連絡
+===================== -->
+
+<div id="notices"></div>
+
+
+</main>
+
+
+<script>
+
+
+/* ==================================
+   基本設定
+================================== */
+
+const ranges = [
+
+  "全校",
+
+  "1年",
+
+  "2年",
+
+  "3年"
+
+];
+
+
+const subjectsByRange = {
+
+  "1年": [
+    "国語",
+    "数学",
+    "英語",
+    "地理総合",
+    "歴史総合",
+    "生物基礎",
+    "物理基礎",
+    "その他"
+  ],
+
+  "2年": {
+    "学年全体": [
+      "国語", "数学", "英語", "文系生物", "地学基礎",
+      "地理", "日本史", "世界史", "公共", "情報",
+      "理系生物", "化学", "物理", "その他"
+    ],
+    "1組": [
+      "国語", "数学", "英語", "文系生物", "地学基礎",
+      "地理", "日本史", "世界史", "公共", "情報", "その他"
+    ],
+    "2組": [
+      "国語", "数学", "英語", "文系生物", "地学基礎",
+      "地理", "日本史", "世界史", "公共", "情報", "その他"
+    ],
+    "3組": [
+      "国語", "数学", "英語", "文系生物", "地学基礎",
+      "地理", "日本史", "世界史", "公共", "情報", "その他"
+    ],
+    "4組": [
+      "国語", "数学", "英語", "地理", "日本史", "世界史",
+      "公共", "情報", "理系生物", "化学", "物理", "その他"
+    ],
+    "5組": [
+      "国語", "数学", "英語", "地理", "日本史", "世界史",
+      "公共", "情報", "理系生物", "化学", "物理", "その他"
+    ],
+    "6組": [
+      "国語", "数学", "英語", "地理", "日本史", "世界史",
+      "公共", "情報", "理系生物", "化学", "物理", "その他"
+    ],
+    "7組": [
+      "国語", "数学", "英語", "地理", "日本史", "世界史",
+      "公共", "情報", "理系生物", "化学", "物理", "その他"
+    ],
+    "8組": [
+      "国語", "数学", "英語", "地理", "日本史", "世界史",
+      "公共", "情報", "理系生物", "化学", "物理", "その他"
+    ]
+  },
+
+  "3年": {
+    "学年全体": [
+      "国語", "数学", "英語", "文系生物", "地学基礎",
+      "地理", "日本史", "世界史", "公民", "情報",
+      "理系生物", "化学", "物理", "その他"
+    ],
+    "1組": [
+      "国語", "数学", "英語", "文系生物", "地学基礎",
+      "地理", "日本史", "世界史", "公民", "情報", "その他"
+    ],
+    "2組": [
+      "国語", "数学", "英語", "文系生物", "地学基礎",
+      "地理", "日本史", "世界史", "公民", "情報", "その他"
+    ],
+    "3組": [
+      "国語", "数学", "英語", "文系生物", "地学基礎",
+      "地理", "日本史", "世界史", "公民", "情報", "その他"
+    ],
+    "4組": [
+      "国語", "数学", "英語", "地理", "日本史", "世界史",
+      "情報", "理系生物", "化学", "物理", "その他"
+    ],
+    "5組": [
+      "国語", "数学", "英語", "地理", "日本史", "世界史",
+      "情報", "理系生物", "化学", "物理", "その他"
+    ],
+    "6組": [
+      "国語", "数学", "英語", "地理", "日本史", "世界史",
+      "情報", "理系生物", "化学", "物理", "その他"
+    ],
+    "7組": [
+      "国語", "数学", "英語", "地理", "日本史", "世界史",
+      "情報", "理系生物", "化学", "物理", "その他"
+    ],
+    "8組": [
+      "国語", "数学", "英語", "地理", "日本史", "世界史",
+      "情報", "理系生物", "化学", "物理", "その他"
+    ]
+  }
+};
+
+
+const classes = [
+  "学年全体",
+  "1組",
+  "2組",
+  "3組",
+  "4組",
+  "5組",
+  "6組",
+  "7組",
+  "8組"
+];
+
+
+let selectedRange =
+  "全校";
+
+
+let selectedClass =
+  "1組";
+
+
+let selectedSubject =
+  "その他";
+
+
+/* ==================================
+   連絡データ
+================================== */
+
+let notices = JSON.parse(
+
+  localStorage.getItem(
+    "schoolNotices"
+  )
+
+) || [];
+
+
+/* ==================================
+   既存データを新形式に対応
+================================== */
+
+notices = notices.map(notice => {
+
+  return {
+
+    ...notice,
+
+    /*
+      投稿日
+    */
+
+    postedAt:
+      notice.postedAt ||
+      new Date().toISOString(),
+
+    /*
+      ピン留め
+    */
+
+    pinned:
+      notice.pinned || false,
+
+    /*
+      既読
+    */
+
+    read:
+      notice.read || false
+
+  };
+
+});
+
+
+/* ==================================
+   学年・全校
+================================== */
+
+function renderRanges() {
+
+  const container =
+    document.getElementById(
+      "gradeTabs"
+    );
+
+  container.innerHTML = "";
+
+
+  ranges.forEach(range => {
+
+    const button =
+      document.createElement(
+        "button"
+      );
+
+
+    button.textContent =
+      range === "全校"
+      ? "🏫 全校"
+      : range;
+
+
+    if (
+      range === selectedRange
+    ) {
+
+      button.classList.add(
+        "active"
+      );
+
+    }
+
+
+    button.onclick = () => {
+
+      selectedRange =
+        range;
+
+      renderAll();
+
+    };
+
+
+    container.appendChild(
+      button
+    );
+
+  });
+
+}
+
+
+/* ==================================
+   クラス
+================================== */
+
+function renderClasses() {
+
+  const container =
+    document.getElementById(
+      "classTabs"
+    );
+
+  container.innerHTML = "";
+
+
+  classes.forEach(className => {
+
+    const button =
+      document.createElement(
+        "button"
+      );
+
+
+    button.textContent =
+      className;
+
+
+    if (
+      className === selectedClass
+    ) {
+
+      button.classList.add(
+        "active"
+      );
+
+    }
+
+
+    button.onclick = () => {
+
+      selectedClass =
+        className;
+
+      selectedSubject = "";
+      renderAll();
+
+    };
+
+
+    container.appendChild(
+      button
+    );
+
+  });
+
+}
+
+
+/* ==================================
+   教科
+================================== */
+
+function renderSubjects() {
+
+  const container =
+    document.getElementById(
+      "subjectTabs"
+    );
+
+  container.innerHTML = "";
+
+
+  let subjects;
+
+  if (selectedRange === "1年") {
+    subjects = subjectsByRange["1年"];
+  } else if (selectedRange === "2年" || selectedRange === "3年") {
+    if (selectedClass === "学年全体") {
+      subjects = subjectsByRange[selectedRange]["学年全体"];
+    } else if (["1組", "2組", "3組"].includes(selectedClass)) {
+      subjects = subjectsByRange[selectedRange]["1組"];
+    } else {
+      subjects = subjectsByRange[selectedRange]["4組"];
+    }
+  } else {
+    subjects = [];
+  }
+
+  subjects.forEach(subject => {
+
+    const button =
+      document.createElement(
+        "button"
+      );
+
+
+    button.textContent =
+      subject;
+
+
+    if (
+      subject === selectedSubject
+    ) {
+
+      button.classList.add(
+        "active"
+      );
+
+    }
+
+
+    button.onclick = () => {
+
+      selectedSubject =
+        subject;
+
+      renderAll();
+
+    };
+
+
+    container.appendChild(
+      button
+    );
+
+  });
+
+}
+
+
+/* ==================================
+   全校ならクラス・教科を隠す
+================================== */
+
+function updateAreas() {
+
+  const classArea =
+    document.getElementById(
+      "classArea"
+    );
+
+
+  const subjectArea =
+    document.getElementById(
+      "subjectArea"
+    );
+
+
+  if (
+    selectedRange === "全校"
+  ) {
+
+    classArea.style.display =
+      "none";
+
+    subjectArea.style.display =
+      "none";
+
+  }
+
+  else {
+
+    classArea.style.display =
+      "block";
+
+    subjectArea.style.display =
+      "block";
+
+  }
+
+}
+
+
+/* ==================================
+   現在地
+================================== */
+
+function renderCurrent() {
+
+  const current =
+    document.getElementById(
+      "current"
+    );
+
+
+  if (
+    selectedRange === "全校"
+  ) {
+
+    current.innerHTML = `
+
+      <strong>
+        🏫 全校
+      </strong>
+
+      の連絡
+
+    `;
+
+  }
+
+  else {
+
+    current.innerHTML = `
+
+      <strong>
+        ${selectedRange}
+        ${selectedClass}
+      </strong>
+
+      の
+
+      <strong>
+        ${selectedSubject}
+      </strong>
+
+      の連絡
+
+    `;
+
+  }
+
+}
+
+
+/* ==================================
+   ファイル表示
+================================== */
+
+function showSelectedFiles() {
+
+  const input =
+    document.getElementById(
+      "fileInput"
+    );
+
+
+  const container =
+    document.getElementById(
+      "selectedFiles"
+    );
+
+
+  container.innerHTML = "";
+
+
+  Array.from(input.files)
+    .forEach(file => {
+
+      const div =
+        document.createElement(
+          "div"
+        );
+
+
+      div.className =
+        "selected-file";
+
+
+      const icon =
+        file.type.startsWith(
+          "image/"
+        )
+
+        ? "🖼️"
+
+        : "📄";
+
+
+      div.innerHTML = `
+
+        <span>
+          ${icon}
+        </span>
+
+        <span>
+          ${file.name}
+        </span>
+
+      `;
+
+
+      container.appendChild(
+        div
+      );
+
+    });
+
+}
+
+
+/* ==================================
+   連絡追加
+================================== */
+
+function addNotice() {
+
+  const title =
+    document.getElementById(
+      "title"
+    ).value.trim();
+
+
+  const content =
+    document.getElementById(
+      "content"
+    ).value.trim();
+
+
+  const type =
+    document.getElementById(
+      "type"
+    ).value;
+
+
+  const deadline =
+    document.getElementById(
+      "deadline"
+    ).value;
+
+
+  const fileInput =
+    document.getElementById(
+      "fileInput"
+    );
+
+
+  if (
+    !title ||
+    !content
+  ) {
+
+    alert(
+      "タイトルと内容を入力してね！"
+    );
+
+    return;
+
+  }
+
+
+  const files =
+    Array.from(
+      fileInput.files
+    ).map(file => ({
+
+      name:
+        file.name,
+
+      type:
+        file.type
+
+    }));
+
+
+  const newNotice = {
+
+    id:
+      Date.now(),
+
+    range:
+      selectedRange,
+
+    className:
+      selectedRange === "全校"
+      ? null
+      : selectedClass,
+
+    subject:
+      selectedRange === "全校"
+      ? null
+      : selectedSubject,
+
+    title:
+      title,
+
+    content:
+      content,
+
+    type:
+      type,
+
+    deadline:
+      deadline,
+
+    files:
+      files,
+
+    /*
+      投稿された日時
+    */
+
+    postedAt:
+      new Date().toISOString(),
+
+    /*
+      最初は未読
+    */
+
+    read:
+      false,
+
+    /*
+      最初はピン留めなし
+    */
+
+    pinned:
+      false
+
+  };
+
+
+  notices.unshift(
+    newNotice
+  );
+
+
+  saveNotices();
+
+  clearForm();
+
+  renderNotices();
+
+}
+
+
+/* ==================================
+   保存
+================================== */
+
+function saveNotices() {
+
+  localStorage.setItem(
+
+    "schoolNotices",
+
+    JSON.stringify(
+      notices
+    )
+
+  );
+
+}
+
+
+/* ==================================
+   フォーム
+================================== */
+
+function toggleForm() {
+
+  const form =
+    document.getElementById(
+      "form"
+    );
+
+
+  if (
+    form.style.display ===
+    "block"
+  ) {
+
+    form.style.display =
+      "none";
+
+  }
+
+  else {
+
+    form.style.display =
+      "block";
+
+  }
+
+}
+
+
+/* ==================================
+   フォームリセット
+================================== */
+
+function clearForm() {
+
+  document.getElementById(
+    "title"
+  ).value = "";
+
+
+  document.getElementById(
+    "content"
+  ).value = "";
+
+
+  document.getElementById(
+    "deadline"
+  ).value = "";
+
+
+  document.getElementById(
+    "fileInput"
+  ).value = "";
+
+
+  document.getElementById(
+    "selectedFiles"
+  ).innerHTML = "";
+
+
+  document.getElementById(
+    "form"
+  ).style.display =
+    "none";
+
+}
+
+
+/* ==================================
+   ピン留め
+================================== */
+
+function togglePin(id) {
+
+  const notice =
+    notices.find(
+      n => n.id === id
+    );
+
+
+  if (!notice) return;
+
+
+  notice.pinned =
+    !notice.pinned;
+
+
+  saveNotices();
+
+  renderNotices();
+
+}
+
+
+/* ==================================
+   既読・未読
+================================== */
+
+function toggleRead(id) {
+
+  const notice =
+    notices.find(
+      n => n.id === id
+    );
+
+
+  if (!notice) return;
+
+
+  notice.read =
+    !notice.read;
+
+
+  saveNotices();
+
+  renderNotices();
+
+}
+
+
+/* ==================================
+   日付フィルター解除
+================================== */
+
+function clearDateFilter() {
+
+  document.getElementById(
+    "dateFilter"
+  ).value = "";
+
+
+  renderNotices();
+
+}
+
+
+/* ==================================
+   ファイル表示
+================================== */
+
+function renderAttachments(
+  files
+) {
+
+  if (
+    !files ||
+    files.length === 0
+  ) {
+
+    return "";
+
+  }
+
+
+  let html = `
+
+    <div class="attachments">
+
+      <div class="attachments-title">
+        📎 添付ファイル
+      </div>
+
+  `;
+
+
+  files.forEach(file => {
+
+    const icon =
+      file.type &&
+      file.type.startsWith(
+        "image/"
+      )
+
+      ? "🖼️"
+
+      : "📄";
+
+
+    html += `
+
+      <div class="attachment">
+
+        <span
+          class="attachment-icon"
+        >
+
+          ${icon}
+
+        </span>
+
+
+        <span
+          class="attachment-name"
+        >
+
+          ${file.name}
+
+        </span>
+
+      </div>
+
+    `;
+
+  });
+
+
+  html += `
+
+    </div>
+
+  `;
+
+
+  return html;
+
+}
+
+
+/* ==================================
+   日付表示
+================================== */
+
+function formatPostedDate(
+  isoDate
+) {
+
+  const date =
+    new Date(
+      isoDate
+    );
+
+
+  const year =
+    date.getFullYear();
+
+
+  const month =
+    String(
+      date.getMonth() + 1
+    ).padStart(
+      2,
+      "0"
+    );
+
+
+  const day =
+    String(
+      date.getDate()
+    ).padStart(
+      2,
+      "0"
+    );
+
+
+  const hour =
+    String(
+      date.getHours()
+    ).padStart(
+      2,
+      "0"
+    );
+
+
+  const minute =
+    String(
+      date.getMinutes()
+    ).padStart(
+      2,
+      "0"
+    );
+
+
+  return `${year}/${month}/${day}
+    ${hour}:${minute}`;
+
+}
+
+
+/* ==================================
+   連絡表示
+================================== */
+
+function renderNotices() {
+
+  const container =
+    document.getElementById(
+      "notices"
+    );
+
+
+  const search =
+    document.getElementById(
+      "search"
+    ).value
+    .toLowerCase();
+
+
+  const dateFilter =
+    document.getElementById(
+      "dateFilter"
+    ).value;
+
+
+  const sortType =
+    document.getElementById(
+      "sortSelect"
+    ).value;
+
+
+  let filtered;
+
+
+  /* =========================
+     範囲
+  ========================= */
+
+  if (
+    selectedRange === "全校"
+  ) {
+
+    filtered =
+      notices.filter(
+
+        notice =>
+          notice.range ===
+          "全校"
+
+      );
+
+  }
+
+  else {
+
+    filtered =
+      notices.filter(
+
+        notice =>
+
+          notice.range ===
+            selectedRange &&
+
+          notice.className ===
+            selectedClass &&
+
+          notice.subject ===
+            selectedSubject
+
+      );
+
+  }
+
+
+  /* =========================
+     検索
+  ========================= */
+
+  if (search) {
+
+    filtered =
+      filtered.filter(
+        notice =>
+
+          notice.title
+            .toLowerCase()
+            .includes(search)
+
+          ||
+
+          notice.content
+            .toLowerCase()
+            .includes(search)
+
+      );
+
+  }
+
+
+  /* =========================
+     投稿日フィルター
+  ========================= */
+
+  if (dateFilter) {
+
+    filtered =
+      filtered.filter(
+        notice => {
+
+          const postedDate =
+            new Date(
+              notice.postedAt
+            );
+
+
+          const year =
+            postedDate
+              .getFullYear();
+
+
+          const month =
+            String(
+              postedDate.getMonth() + 1
+            )
+            .padStart(
+              2,
+              "0"
+            );
+
+
+          const day =
+            String(
+              postedDate.getDate()
+            )
+            .padStart(
+              2,
+              "0"
+            );
+
+
+          const dateString =
+            `${year}-${month}-${day}`;
+
+
+          return (
+            dateString ===
+            dateFilter
+          );
+
+        }
+
+      );
+
+  }
+
+
+  /* =========================
+     並び替え
+  ========================= */
+
+  if (
+    sortType === "new"
+  ) {
+
+    filtered.sort(
+      (a,b) =>
+        new Date(b.postedAt)
+        -
+        new Date(a.postedAt)
+    );
+
+  }
+
+
+  else if (
+    sortType === "old"
+  ) {
+
+    filtered.sort(
+      (a,b) =>
+        new Date(a.postedAt)
+        -
+        new Date(b.postedAt)
+    );
+
+  }
+
+
+  else if (
+    sortType === "unread"
+  ) {
+
+    filtered.sort(
+      (a,b) => {
+
+        /*
+          未読を上にする
+
+          未読 false
+          既読 true
+
+        */
+
+        if (
+          a.read !== b.read
+        ) {
+
+          return a.read
+            ? 1
+            : -1;
+
+        }
+
+
+        /*
+          同じ状態なら
+          新しい順
+        */
+
+        return (
+          new Date(b.postedAt)
+          -
+          new Date(a.postedAt)
+        );
+
+      }
+
+    );
+
+  }
+
+
+  /* =========================
+     ピン留めを最優先
+  ========================= */
+
+  filtered.sort(
+    (a,b) => {
+
+      if (
+        a.pinned !== b.pinned
+      ) {
+
+        return a.pinned
+          ? -1
+          : 1;
+
+      }
+
+
+      return 0;
+
+    }
+
+  );
+
+
+  /* =========================
+     件数
+  ========================= */
+
+  document.getElementById(
+    "resultCount"
+  ).textContent =
+
+    `${filtered.length}件の連絡`;
+
+
+  container.innerHTML = "";
+
+
+  /* =========================
+     空
+  ========================= */
+
+  if (
+    filtered.length === 0
+  ) {
+
+    container.innerHTML = `
+
+      <div class="empty">
+
+        📭<br>
+
+        条件に一致する
+        連絡がありません。
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
+  /* =========================
+     カード
+  ========================= */
+
+  filtered.forEach(
+    notice => {
+
+      const card =
+        document.createElement(
+          "div"
+        );
+
+
+      if (
+        notice.pinned
+      ) {
+
+        card.classList.add(
+          "pinned"
+        );
+
+      }
+
+
+      /* =====================
+         種類
+      ===================== */
+
+      let typeText = "";
+
+      let typeClass = "";
+
+
+      if (
+        notice.type ===
+        "important"
+      ) {
+
+        typeText =
+          "🔴 重要";
+
+        typeClass =
+          "important";
+
+      }
+
+      else if (
+        notice.type ===
+        "assignment"
+      ) {
+
+        typeText =
+          "🟡 提出物";
+
+        typeClass =
+          "assignment";
+
+      }
+
+      else {
+
+        typeText =
+          "🔵 お知らせ";
+
+        typeClass =
+          "notice";
+
+      }
+
+
+      /* =====================
+         範囲タグ
+      ===================== */
+
+      const rangeTag =
+
+        notice.range ===
+        "全校"
+
+        ?
+
+        `
+
+          <span
+            class="tag school-wide"
+          >
+
+            🏫 全校連絡
+
+          </span>
+
+        `
+
+        :
+
+        `
+
+          <span
+            class="tag"
+          >
+
+            ${notice.subject}
+
+          </span>
+
+        `;
+
+
+      /* =====================
+         未読タグ
+      ===================== */
+
+      const unreadTag =
+
+        !notice.read
+
+        ?
+
+        `
+
+          <span
+            class="tag unread-tag"
+          >
+
+            🔵 未読
+
+          </span>
+
+        `
+
+        :
+
+        "";
+
+
+      /* =====================
+         ピン
+      ===================== */
+
+      const pinTag =
+
+        notice.pinned
+
+        ?
+
+        `
+
+          <span
+            class="tag"
+            style="
+              background:#fff6d7;
+              color:#8b6d00;
+            "
+          >
+
+            📌 ピン留め
+
+          </span>
+
+        `
+
+        :
+
+        "";
+
+
+      /* =====================
+         カード
+      ===================== */
+
+      card.className +=
+        " card";
+
+
+      card.innerHTML = `
+
+        <div class="card-top">
+
+          <div>
+
+            <span
+              class="tag ${typeClass}"
+            >
+
+              ${typeText}
+
+            </span>
+
+
+            ${rangeTag}
+
+
+            ${unreadTag}
+
+
+            ${pinTag}
+
+          </div>
+
+        </div>
+
+
+        <h3>
+
+          ${notice.title}
+
+        </h3>
+
+
+        <div class="card-content">
+
+          ${notice.content}
+
+        </div>
+
+
+        ${
+
+          renderAttachments(
+            notice.files
+          )
+
+        }
+
+
+        ${
+
+          notice.deadline
+
+          ?
+
+          `
+
+            <div class="date">
+
+              📅 期限：
+              ${notice.deadline}
+
+            </div>
+
+          `
+
+          :
+
+          ""
+
+        }
+
+
+        <div class="date">
+
+          🕐 投稿日：
+          ${formatPostedDate(
+            notice.postedAt
+          )}
+
+        </div>
+
+
+        <div class="card-buttons">
+
+
+          <button
+
+            class="
+              ${notice.pinned
+                ? "pinned-button"
+                : ""}
+            "
+
+            onclick="
+              togglePin(
+                ${notice.id}
+              )
+            "
+
+          >
+
+            ${
+
+              notice.pinned
+
+              ? "📌 ピン留め解除"
+
+              : "📌 ピン留め"
+
+            }
+
+          </button>
+
+
+          <button
+
+            class="
+              ${notice.read
+                ? "checked"
+                : ""}
+            "
+
+            onclick="
+              toggleRead(
+                ${notice.id}
+              )
+            "
+
+          >
+
+            ${
+
+              notice.read
+
+              ? "✓ 既読"
+
+              : "☑ 既読にする"
+
+            }
+
+          </button>
+
+
+        </div>
+
+      `;
+
+
+      container.appendChild(
+        card
+      );
+
+    }
+
+  );
+
+}
+
+
+/* ==================================
+   全体更新
+================================== */
+
+function renderAll() {
+
+  renderRanges();
+
+  renderClasses();
+
+  let availableSubjects;
+
+  if (selectedRange === "1年") {
+    availableSubjects = subjectsByRange["1年"];
+  } else if (selectedRange === "2年" || selectedRange === "3年") {
+    availableSubjects =
+      subjectsByRange[selectedRange][selectedClass] ||
+      subjectsByRange[selectedRange]["学年全体"];
+  } else {
+    availableSubjects = [];
+  }
+
+  if (
+    availableSubjects.length > 0 &&
+    !availableSubjects.includes(selectedSubject)
+  ) {
+    selectedSubject =
+      availableSubjects[availableSubjects.length - 1];
+  }
+
+  renderSubjects();
+
+  updateAreas();
+
+  renderCurrent();
+
+  renderNotices();
+
+}
+
+
+/* ==================================
+   起動
+================================== */
+
+saveNotices();
+
+renderAll();
+
+
+</script>
+
+</body>
+
+</html>
